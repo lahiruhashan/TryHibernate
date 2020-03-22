@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class Main {
@@ -110,13 +111,18 @@ public class Main {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        Query query = session.createQuery("from User where userId > 3");
-        List users = query.list();
-
+        Query query = session.createQuery("select new map (userId, username) from User");
+        query.setFirstResult(2);
+        query.setMaxResults(3);
+        List<HashMap<Integer, String>> users = query.list();
         System.out.println(users.size());
 
         session.getTransaction().commit();
         session.close();
+
+        for (HashMap u: users) {
+            System.out.println(u.values());
+        }
 //
 //        userDetails = null;
 //        session = sessionFactory.openSession();
