@@ -76,6 +76,7 @@ public class Main {
 //        userDetails = null;
         session = sessionFactory.openSession();
         user = session.get(User.class, 1);
-        System.out.println(user.getListOfAddresses());
+        session.close();
+        System.out.println(user.getListOfAddresses().size());
     }
 }

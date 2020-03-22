@@ -42,4 +42,14 @@ public class Address {
     public void setPinCode(String pinCode) {
         this.pinCode = pinCode;
     }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "street='" + street + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", pinCode='" + pinCode + '\'' +
+                '}';
+    }
 }

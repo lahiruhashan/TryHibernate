@@ -15,9 +15,9 @@
         <property name="show_sql">true</property>
 
         <!--Names and annotated entity classes-->
-        <mapping class="io.hashtips.dto.UserDetails" />
-        <mapping class="io.hashtips.dto.Hotel" />
-        <mapping class="io.hashtips.dto.RoomType" />
+        <!--<mapping class="io.hashtips.dto.UserDetails" />-->
+        <!--<mapping class="io.hashtips.dto.Hotel" />-->
+        <!--<mapping class="io.hashtips.dto.RoomType" />-->
         <mapping class="io.hashtips.dto.User" />
         <!--<mapping class="io.hashtips.dto.HotelRoomType" />-->
     </session-factory>

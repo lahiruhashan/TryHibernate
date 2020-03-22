@@ -1,11 +1,8 @@
 package io.hashtips.dto;
 
-import org.hibernate.annotations.CollectionId;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 public class User {
@@ -14,11 +11,9 @@ public class User {
     @Column(name = "user_id")
     private int userId;
     private String username;
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @JoinTable(name = "addresses",
             joinColumns = @JoinColumn(name = "user_id"))
-    @GenericGenerator(name = "increment-gen", strategy = "increment")
-    @CollectionId(columns = {@Column(name = "address_id")}, generator = "increment-gen", type = @Type(type = "long"))
     private Collection<Address> listOfAddresses = new ArrayList<Address>();
 
     public int getUserId() {
@@ -43,5 +38,14 @@ public class User {
 
     public void setListOfAddresses(Collection<Address> listOfAddresses) {
         this.listOfAddresses = listOfAddresses;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                ", listOfAddresses=" + listOfAddresses +
+                '}';
     }
 }
