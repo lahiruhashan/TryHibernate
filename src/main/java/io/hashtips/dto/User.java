@@ -11,7 +11,7 @@ public class User {
     @Column(name = "user_id")
     private int userId;
     private String username;
-    @OneToMany(mappedBy = "user")
+    @ManyToMany
     private Collection<Vehicle> vehicle = new ArrayList<Vehicle>();
 
     public int getUserId() {

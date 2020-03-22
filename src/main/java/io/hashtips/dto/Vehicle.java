@@ -1,6 +1,8 @@
 package io.hashtips.dto;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 public class Vehicle {
@@ -10,9 +12,8 @@ public class Vehicle {
     private int vehicleId;
     @Column(name = "vehicle_name")
     private String vehicleName;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @ManyToMany(mappedBy = "vehicle")
+    private Collection<User> userList = new ArrayList<User>();
 
     public int getVehicleId() {
         return vehicleId;
@@ -30,11 +31,11 @@ public class Vehicle {
         this.vehicleName = vehicleName;
     }
 
-    public User getUser() {
-        return user;
+    public Collection<User> getUserList() {
+        return userList;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserList(Collection<User> userList) {
+        this.userList = userList;
     }
 }
