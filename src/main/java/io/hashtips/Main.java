@@ -51,15 +51,22 @@ public class Main {
         session.beginTransaction();
 //        session.save(userDetails);
 
-        Vehicle vehicle = new Vehicle();
-        vehicle.setVehicleName("Car");
+
+
 
         User user = new User();
         user.setUsername("Hashan");
-        user.setVehicle(vehicle);
+
+        Vehicle vehicle = new Vehicle();
+        vehicle.setVehicleName("Car");
+        Vehicle vehicle2 = new Vehicle();
+        vehicle2.setVehicleName("Jeep");
+        vehicle.setUser(user);
+        vehicle2.setUser(user);
+        session.save(vehicle);
+        session.save(vehicle2);
 
         session.save(user);
-        session.save(vehicle);
 
 
 //
@@ -77,7 +84,7 @@ public class Main {
 //        userDetails = null;
         session = sessionFactory.openSession();
         user = session.get(User.class, 1);
-        System.out.println(user.getVehicle().getVehicleName());
+        System.out.println(user.getVehicle().size());
         session.close();
     }
 }
