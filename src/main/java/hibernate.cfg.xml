@@ -19,6 +19,7 @@
         <!--<mapping class="io.hashtips.dto.Hotel" />-->
         <!--<mapping class="io.hashtips.dto.RoomType" />-->
         <mapping class="io.hashtips.dto.User" />
+        <mapping class="io.hashtips.dto.Vehicle" />
         <!--<mapping class="io.hashtips.dto.HotelRoomType" />-->
     </session-factory>
 </hibernate-configuration>

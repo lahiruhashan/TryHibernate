@@ -2,12 +2,11 @@ package io.hashtips;
 
 import io.hashtips.dto.Address;
 import io.hashtips.dto.User;
+import io.hashtips.dto.Vehicle;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
-import java.util.HashSet;
 
 public class Main {
     private static final SessionFactory ourSessionFactory;
@@ -52,13 +51,15 @@ public class Main {
         session.beginTransaction();
 //        session.save(userDetails);
 
+        Vehicle vehicle = new Vehicle();
+        vehicle.setVehicleName("Car");
+
         User user = new User();
         user.setUsername("Hashan");
-        HashSet<Address> addresses = new HashSet<Address>();
-        addresses.add(address);
-        addresses.add(officeAddress);
-        user.setListOfAddresses(addresses);
+        user.setVehicle(vehicle);
+
         session.save(user);
+        session.save(vehicle);
 
 
 //
@@ -76,7 +77,7 @@ public class Main {
 //        userDetails = null;
         session = sessionFactory.openSession();
         user = session.get(User.class, 1);
+        System.out.println(user.getVehicle().getVehicleName());
         session.close();
-        System.out.println(user.getListOfAddresses().size());
     }
 }
