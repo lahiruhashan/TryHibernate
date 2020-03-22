@@ -1,9 +1,6 @@
 package io.hashtips;
 
-import io.hashtips.dto.FourWheeler;
-import io.hashtips.dto.TwoWheeler;
 import io.hashtips.dto.User;
-import io.hashtips.dto.Vehicle;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -58,28 +55,34 @@ public class Main {
         User user = new User();
         user.setUsername("Hashan");
 
-        Vehicle vehicle = new Vehicle();
-        vehicle.setVehicleName("Car");
+        User user1 = new User();
+        user1.setUsername("Lahiru");
 
-        Vehicle vehicle2 = new Vehicle();
-        vehicle2.setVehicleName("Jeep");
+        User user2 = new User();
+        user2.setUsername("Perera");
 
-        TwoWheeler bike = new TwoWheeler();
-        bike.setVehicleName("Bike");
-        bike.setSteeringHandle("Bike Steering Handle");
-
-        FourWheeler car = new FourWheeler();
-        car.setVehicleName("Porsche");
-        car.setSteeringWheel("Porsche Steering Wheel");
+//        Vehicle vehicle = new Vehicle();
+//        vehicle.setVehicleName("Car");
+//
+//        Vehicle vehicle2 = new Vehicle();
+//        vehicle2.setVehicleName("Jeep");
+//
+//        TwoWheeler bike = new TwoWheeler();
+//        bike.setVehicleName("Bike");
+//        bike.setSteeringHandle("Bike Steering Handle");
+//
+//        FourWheeler car = new FourWheeler();
+//        car.setVehicleName("Porsche");
+//        car.setSteeringWheel("Porsche Steering Wheel");
 
 
 //        user.getVehicle().add(vehicle);
 //        user.getVehicle().add(vehicle2);
 
 //        session.persist(user);
-        session.save(vehicle);
-        session.save(car);
-        session.save(bike);
+//        session.save(vehicle);
+//        session.save(car);
+//        session.save(bike);
 
 //
 //        Hotel hotel = new Hotel();
@@ -89,6 +92,19 @@ public class Main {
 //        RoomType roomType = new RoomType();
 //        roomType.setRoomTypeName("Room Type 1");
 //        session.save(roomType);
+
+//        session.save(user);
+//        session.save(user1);
+//        session.save(user2);
+
+//        User returnedUser = session.get(User.class, 3);
+//        System.out.println("Username : " + returnedUser.getUsername());
+
+//        session.delete(returnedUser);
+
+        User returnedUser = session.get(User.class, 2);
+        returnedUser.setUsername("Mr. Hashan");
+        session.update(returnedUser);
 
         session.getTransaction().commit();
         session.close();

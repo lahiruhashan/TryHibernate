@@ -10,7 +10,7 @@
         <property name="connection.password">root</property>
 
         <!-- DB schema will be updated if needed -->
-         <property name="hbm2ddl.auto">create</property>
+         <property name="hbm2ddl.auto">update</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
         <property name="show_sql">true</property>
 
@@ -19,9 +19,9 @@
         <!--<mapping class="io.hashtips.dto.Hotel" />-->
         <!--<mapping class="io.hashtips.dto.RoomType" />-->
         <mapping class="io.hashtips.dto.User" />
-        <mapping class="io.hashtips.dto.Vehicle" />
-        <mapping class="io.hashtips.dto.TwoWheeler" />
-        <mapping class="io.hashtips.dto.FourWheeler" />
+        <!--<mapping class="io.hashtips.dto.Vehicle" />-->
+        <!--<mapping class="io.hashtips.dto.TwoWheeler" />-->
+        <!--<mapping class="io.hashtips.dto.FourWheeler" />-->
         <!--<mapping class="io.hashtips.dto.HotelRoomType" />-->
     </session-factory>
 </hibernate-configuration>
