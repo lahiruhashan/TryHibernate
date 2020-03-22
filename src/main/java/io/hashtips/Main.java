@@ -63,13 +63,10 @@ public class Main {
         Vehicle vehicle2 = new Vehicle();
         vehicle2.setVehicleName("Jeep");
 
-        session.save(vehicle);
-        session.save(vehicle2);
-
         user.getVehicle().add(vehicle);
         user.getVehicle().add(vehicle2);
 
-        session.save(user);
+        session.persist(user);
 
 
 //

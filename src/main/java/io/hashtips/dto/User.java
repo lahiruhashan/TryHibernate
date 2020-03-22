@@ -11,7 +11,7 @@ public class User {
     @Column(name = "user_id")
     private int userId;
     private String username;
-    @ManyToMany
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     private Collection<Vehicle> vehicle = new ArrayList<Vehicle>();
 
     public int getUserId() {
