@@ -7,6 +7,10 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class Main {
@@ -111,19 +115,24 @@ public class Main {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        String minUserId = "3";
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<User> criteria = builder.createQuery(User.class);
+        Root<User> root = criteria.from(User.class);
+        Predicate[] predicates = new Predicate[2];
+        predicates[0] = builder.greaterThan(root.<Comparable>get("userId"), 3);
+        predicates[1] = builder.like(root.<String>get("username"), "%a%");
 
-        Query query = session.createQuery("from User where userId > :userId and username = :username");
-        query.setParameter("userId", Integer.parseInt(minUserId));
-        query.setParameter("username", "Jack");
+        criteria.select(root).where(predicates);
+        Query<User> query = session.createQuery(criteria);
+        List<User> results = query.getResultList();
 
-        List<User> users = query.list();
-        System.out.println(users.size());
+
+        System.out.println(results.size());
 
         session.getTransaction().commit();
         session.close();
 
-        for (User u: users) {
+        for (User u: results) {
             System.out.println(u.getUsername());
         }
 //
