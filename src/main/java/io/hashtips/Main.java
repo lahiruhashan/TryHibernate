@@ -1,12 +1,12 @@
 package io.hashtips;
 
+import io.hashtips.dto.User;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class Main {
@@ -111,17 +111,20 @@ public class Main {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        Query query = session.createQuery("select new map (userId, username) from User");
-        query.setFirstResult(2);
-        query.setMaxResults(3);
-        List<HashMap<Integer, String>> users = query.list();
+        String minUserId = "3";
+
+        Query query = session.createQuery("from User where userId > :userId and username = :username");
+        query.setParameter("userId", Integer.parseInt(minUserId));
+        query.setParameter("username", "Jack");
+
+        List<User> users = query.list();
         System.out.println(users.size());
 
         session.getTransaction().commit();
         session.close();
 
-        for (HashMap u: users) {
-            System.out.println(u.values());
+        for (User u: users) {
+            System.out.println(u.getUsername());
         }
 //
 //        userDetails = null;
