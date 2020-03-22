@@ -1,10 +1,12 @@
 package io.hashtips;
 
-import io.hashtips.dto.User;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
+
+import java.util.List;
 
 public class Main {
     private static final SessionFactory ourSessionFactory;
@@ -45,21 +47,20 @@ public class Main {
 //        userDetails.setOfficeAddress(officeAddress);
 
 //        userDetails.setDescription("Description of the user");
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
+
 //        session.save(userDetails);
 
 
 
 
-        User user = new User();
-        user.setUsername("Hashan");
-
-        User user1 = new User();
-        user1.setUsername("Lahiru");
-
-        User user2 = new User();
-        user2.setUsername("Perera");
+//        User user = new User();
+//        user.setUsername("Hashan");
+//
+//        User user1 = new User();
+//        user1.setUsername("Lahiru");
+//
+//        User user2 = new User();
+//        user2.setUsername("Perera");
 
 //        Vehicle vehicle = new Vehicle();
 //        vehicle.setVehicleName("Car");
@@ -102,9 +103,17 @@ public class Main {
 
 //        session.delete(returnedUser);
 
-        User returnedUser = session.get(User.class, 2);
-        returnedUser.setUsername("Lahiru");
+//        User returnedUser = session.get(User.class, 2);
+//        returnedUser.setUsername("Lahiru");
 //        session.update(returnedUser);
+
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        Query query = session.createQuery("from User where userId > 3");
+        List users = query.list();
+
+        System.out.println(users.size());
 
         session.getTransaction().commit();
         session.close();
