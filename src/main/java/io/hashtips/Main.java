@@ -1,6 +1,7 @@
 package io.hashtips;
 
-import io.hashtips.dto.Address;
+import io.hashtips.dto.FourWheeler;
+import io.hashtips.dto.TwoWheeler;
 import io.hashtips.dto.User;
 import io.hashtips.dto.Vehicle;
 import org.hibernate.HibernateException;
@@ -32,18 +33,18 @@ public class Main {
 //        userDetails.setUserName("Lahiru");
 //        userDetails.setJoinedDate(new Date());
 
-        Address address = new Address();
-        address.setStreet("street 1");
-        address.setCity("city 1");
-        address.setState("state 1");
-        address.setPinCode("12345");
+//        Address address = new Address();
+//        address.setStreet("street 1");
+//        address.setCity("city 1");
+//        address.setState("state 1");
+//        address.setPinCode("12345");
 //        userDetails.setAddress(address);
-
-        Address officeAddress = new Address();
-        officeAddress.setStreet("street 2");
-        officeAddress.setCity("city 2");
-        officeAddress.setState("state 2");
-        officeAddress.setPinCode("67909");
+//
+//        Address officeAddress = new Address();
+//        officeAddress.setStreet("street 2");
+//        officeAddress.setCity("city 2");
+//        officeAddress.setState("state 2");
+//        officeAddress.setPinCode("67909");
 //        userDetails.setOfficeAddress(officeAddress);
 
 //        userDetails.setDescription("Description of the user");
@@ -63,11 +64,22 @@ public class Main {
         Vehicle vehicle2 = new Vehicle();
         vehicle2.setVehicleName("Jeep");
 
-        user.getVehicle().add(vehicle);
-        user.getVehicle().add(vehicle2);
+        TwoWheeler bike = new TwoWheeler();
+        bike.setVehicleName("Bike");
+        bike.setSteeringHandle("Bike Steering Handle");
 
-        session.persist(user);
+        FourWheeler car = new FourWheeler();
+        car.setVehicleName("Porsche");
+        car.setSteeringWheel("Porsche Steering Wheel");
 
+
+//        user.getVehicle().add(vehicle);
+//        user.getVehicle().add(vehicle2);
+
+//        session.persist(user);
+        session.save(vehicle);
+        session.save(car);
+        session.save(bike);
 
 //
 //        Hotel hotel = new Hotel();
@@ -82,9 +94,9 @@ public class Main {
         session.close();
 //
 //        userDetails = null;
-        session = sessionFactory.openSession();
-        user = session.get(User.class, 1);
-        System.out.println(user.getVehicle().size());
-        session.close();
+//        session = sessionFactory.openSession();
+//        user = session.get(User.class, 1);
+//        System.out.println(user.getVehicle().size());
+//        session.close();
     }
 }

@@ -3,6 +3,11 @@ package io.hashtips.dto;
 import javax.persistence.*;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(
+        name = "Vehicle_Type",
+        discriminatorType = DiscriminatorType.STRING
+)
 public class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
