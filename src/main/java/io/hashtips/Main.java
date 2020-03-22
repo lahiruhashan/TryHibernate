@@ -103,8 +103,8 @@ public class Main {
 //        session.delete(returnedUser);
 
         User returnedUser = session.get(User.class, 2);
-        returnedUser.setUsername("Mr. Hashan");
-        session.update(returnedUser);
+        returnedUser.setUsername("Lahiru");
+//        session.update(returnedUser);
 
         session.getTransaction().commit();
         session.close();
